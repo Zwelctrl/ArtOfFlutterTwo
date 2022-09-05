@@ -13,9 +13,8 @@ class API {
 }
 
 class Api_Services extends API {
-
   //asign instance of getDogList into available
-  late AvailableDogs available;
+  AvailableDogs? available; 
   Api_Services._() {
     getDogList().then((value) {
       if (value != null) {
@@ -38,8 +37,9 @@ class Api_Services extends API {
     return AvailableDogs.fromJSON(result);
   }
 
-  Future<ImageModel?> getDog() async {
-    final _singleDog = await getData('https://dog.ceo/api/breeds/image/random');
+  Future<ImageModel?> getDog(String uri) async {
+    final _singleDog =
+        await getData('https://dog.ceo/api/breeds/$uri/image/random');
     if (_singleDog == null) return null;
     return ImageModel.fromJSON(_singleDog);
   }

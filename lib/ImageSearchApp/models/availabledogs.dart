@@ -14,6 +14,12 @@ class AvailableDogs {
       _datas.add(key.toString());
     });
 
-    return AvailableDogs._(_datas );
+    return AvailableDogs._(_datas);
   }
+
+  //important
+  // Map<String, dynamic> toJson() => {
+  //    'dogNames' : dogNames,
+  // };
+  // uneccessary cuz we r using list<String>
 }
