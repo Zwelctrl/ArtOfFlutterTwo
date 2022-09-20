@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 
 void main() {
+
   Api_Services.instance();
   // Api_Services.getData('https://dog.ceo/api/breeds/image/random');
   runApp(MyApp());
@@ -55,3 +56,4 @@ class _MyAppState extends State<MyApp> {
 
 
 // 1:01:41
+

@@ -4,7 +4,15 @@ import 'package:artofflutter_two/ImageSearchApp/models/availabledogs.dart';
 import 'package:artofflutter_two/ImageSearchApp/models/image_model.dart';
 import 'package:http/http.dart' as http;
 
-class API {
+class _API {
+  /**
+   * 200 => Success
+   * 201 => Create => Post(upload file, login ,)
+   * 404 => Not Found
+   * 401 => Auth
+   * 403 => Auth
+   * 500 => Server Error
+   */
   Future<Map<String, dynamic>?> getData(String uri) async {
     final http.Response a = await http.get(Uri.parse(uri));
     if (a.body == null) return null;
@@ -12,9 +20,9 @@ class API {
   }
 }
 
-class Api_Services extends API {
+class Api_Services extends _API {
   //asign instance of getDogList into available
-  AvailableDogs? available; 
+  AvailableDogsModel? available; 
   Api_Services._() {
     getDogList().then((value) {
       if (value != null) {
@@ -31,10 +39,10 @@ class Api_Services extends API {
     return _instance!;
   }
 
-  Future<AvailableDogs?> getDogList() async {
+  Future<AvailableDogsModel?> getDogList() async {
     final result = await getData('https://dog.ceo/api/breeds/list/all');
     if (result == null) return null;
-    return AvailableDogs.fromJSON(result);
+    return AvailableDogsModel.fromJSON(result);
   }
 
   Future<ImageModel?> getDog(String uri) async {
